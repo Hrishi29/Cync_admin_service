@@ -1,0 +1,458 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample API documentation to get and store information for the lenders in a banking environment",
+    "version": "1.0.0",
+    "title": "Idexcel Admin Service",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:8000",
+  "basePath": "/hrishi-api",
+  "tags": [
+    {
+      "name": "lenders",
+      "description": "Everything about the Lenders"
+    },
+    {
+      "name": "healthCheck",
+      "description": "Check the Health of the Application"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/lenders": {
+      "post": {
+        "tags": [
+          "lenders"
+        ],
+        "summary": "Add a new lender to the application",
+        "description": "",
+        "operationId": "addPet",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Lender object that needs to be added to the application",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LendersPost"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Lender successfullt created"
+          },
+          "409": {
+            "description": "Lender already exists"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "lenders"
+        ],
+        "summary": "Get a brief list of lenders",
+        "description": "",
+        "operationId": "updatePet",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success: List of lenders",
+            "schema": {
+              "$ref": "#/definitions/GetLenders"
+            }
+          }
+        }
+      }
+    },
+    "/lenders/{lenderId}": {
+      "get": {
+        "tags": [
+          "lenders"
+        ],
+        "summary": "Find lenders by Id",
+        "description": "Lender Id needs to be provided in path",
+        "operationId": "findPetsByStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "lenderId",
+            "in": "path",
+            "description": "Id of lender to return",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GetLendersById"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Lender with request Id not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "lenders"
+        ],
+        "summary": "Update lenders by Id",
+        "description": "Lender Id needs to be provided in path",
+        "operationId": "findPetsByTags",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "lenderId",
+            "in": "path",
+            "description": "Id of lender to return",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Lender object that needs to be updated in the application",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LendersPut"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success: No Content"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Lender with request Id not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "lenders"
+        ],
+        "summary": "Delete lender by Id",
+        "description": "",
+        "operationId": "deletePet",
+        "parameters": [
+          {
+            "name": "lenderId",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success: No Content"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Lender with request Id not found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "lenders"
+        ],
+        "summary": "Update lender status by Id",
+        "description": "",
+        "operationId": "uploadFile",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "lenderId",
+            "in": "path",
+            "description": "ID of lender to update status",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Lender object that needs to be updated in the application",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LendersPatch"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success: No Content"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Lender with request Id not found"
+          }
+        }
+      },
+      "head": {
+        "tags": [
+          "lenders"
+        ],
+        "summary": "Request to check if lender with given Id exists and is 'ACTIVE'",
+        "description": "",
+        "operationId": "getInventory",
+        "parameters": [
+          {
+            "name": "lenderId",
+            "in": "path",
+            "description": "ID of lender to find",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success: Lender with Id exists and is 'ACTIVE'"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Lender with matching Id not found"
+          }
+        }
+      }
+    },
+    "/healthCheck": {
+      "get": {
+        "tags": [
+          "healthCheck"
+        ],
+        "summary": "Get the status of admin service",
+        "description": "",
+        "operationId": "placeOrder",
+        "consumes": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "/< your name /> admin service is running...",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "LendersPost": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/address"
+          }
+        },
+        "primaryContact": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/primaryContact"
+          }
+        }
+      }
+    },
+    "GetLenders": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "description": "Lender Status",
+          "enum": [
+            "ACTIVE",
+            "SUSPENDED"
+          ]
+        }
+      }
+    },
+    "GetLendersById": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/address"
+          }
+        },
+        "primaryContact": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/primaryContact"
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "Lender Status",
+          "enum": [
+            "ACTIVE",
+            "SUSPENDED"
+          ]
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "createdDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedBy": {
+          "type": "string"
+        },
+        "updatedDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "LendersPut": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/address"
+          }
+        },
+        "primaryContact": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/primaryContact"
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "Lender Status: Allowed Values",
+          "enum": [
+            "ACTIVE",
+            "SUSPENDED"
+          ]
+        }
+      }
+    },
+    "LendersPatch": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "status": {
+          "type": "string",
+          "description": "Lender Status: Allowed Values",
+          "enum": [
+            "ACTIVE",
+            "SUSPENDED"
+          ]
+        }
+      }
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "zipCode": {
+          "type": "integer"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    },
+    "primaryContact": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
