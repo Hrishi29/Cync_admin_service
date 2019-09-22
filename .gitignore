@@ -1,6 +1,7 @@
 
 **/.idea
-
+**/hrishi_admin_service
+**/pom.xml
 **/node_modules
 **/bower_components
 **/.tmp
