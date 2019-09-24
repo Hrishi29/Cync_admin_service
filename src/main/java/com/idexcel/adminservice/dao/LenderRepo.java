@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface LenderRepo extends MongoRepository {
+public interface LenderRepo extends MongoRepository<Lender, String> {
 
     Optional<Lender> findByName(String name);
 }

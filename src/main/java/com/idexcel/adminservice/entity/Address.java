@@ -24,15 +24,6 @@ public class Address {
 
     public Address(){}
 
-    public Address(String id, String street, String city, String state, String country, int zipcode, Lender lender) {
-        this.id = id;
-        this.street = street;
-        this.city = city;
-        this.state = state;
-        this.country = country;
-        this.zipcode = zipcode;
-        this.lender = lender;
-    }
 
 
 }

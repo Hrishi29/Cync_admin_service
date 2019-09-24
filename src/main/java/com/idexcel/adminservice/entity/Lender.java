@@ -1,21 +1,19 @@
 package com.idexcel.adminservice.entity;
 
 import com.idexcel.adminservice.enums.LenderStatus;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
-import java.util.UUID;
 
 @Document
-@Getter @Setter @ToString
+
 public class Lender {
     @Id
     private String id;
-    //@Indexed(unique = true)
+
+    @Indexed(unique = true)
     private String name;
 
   //  @OneToOne(mappedBy = "lender", cascade = CascadeType.ALL)
@@ -31,9 +29,93 @@ public class Lender {
     private Date updatedDate;
 
     public Lender() {
-        this.id = UUID.randomUUID().toString();
-        this.status = LenderStatus.ACTIVE;
+       // this.id = UUID.randomUUID().toString();
     }
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public PrimaryContact getPrimaryContact() {
+        return primaryContact;
+    }
+
+    public void setPrimaryContact(PrimaryContact primaryContact) {
+        this.primaryContact = primaryContact;
+    }
+
+    public LenderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(LenderStatus status) {
+        this.status = status;
+    }
+
+    public Date getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Date createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(Date updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public Date getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Lender{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", address=" + address +
+                ", primaryContact=" + primaryContact +
+                ", status=" + status +
+                ", createdBy=" + createdBy +
+                ", createdDate=" + createdDate +
+                ", updatedBy=" + updatedBy +
+                ", updatedDate=" + updatedDate +
+                '}';
+    }
 }

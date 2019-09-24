@@ -19,8 +19,5 @@ public class PrimaryContact {
     public PrimaryContact() {
     }
 
-    public PrimaryContact(String email) {
-        this.email = email;
-    }
 
 }
