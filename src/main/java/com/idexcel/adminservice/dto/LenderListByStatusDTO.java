@@ -1,39 +1,24 @@
-package com.idexcel.adminservice.entity;
+package com.idexcel.adminservice.dto;
 
+import com.idexcel.adminservice.entity.Address;
+import com.idexcel.adminservice.entity.PrimaryContact;
 import com.idexcel.adminservice.enums.LenderStatus;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.*;
 import java.util.Date;
-import java.util.UUID;
 
-@Entity
 @Getter @Setter @ToString
-public class Lender {
-    @Id
+public class LenderListByStatusDTO {
+
     private String id;
-
-    @Column(unique = true)
     private String name;
-
-    @OneToOne(mappedBy = "lender", cascade = CascadeType.ALL)
     private Address address;
-
-    @OneToOne
     private PrimaryContact primaryContact;
-
     private LenderStatus status;
     private Date createdBy;
     private Date createdDate;
     private Date updatedBy;
     private Date updatedDate;
-
-    public Lender() {
-        this.id = UUID.randomUUID().toString();
-        this.status = LenderStatus.ACTIVE;
-    }
-
-
 }
