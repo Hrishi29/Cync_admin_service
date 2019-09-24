@@ -2,6 +2,7 @@ package com.idexcel.adminservice.service;
 
 import com.idexcel.adminservice.dao.LenderRepo;
 import com.idexcel.adminservice.entity.Lender;
+import com.idexcel.adminservice.enums.LenderStatus;
 import com.idexcel.adminservice.exception.LenderExistsException;
 import com.idexcel.adminservice.exception.LenderNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Calendar;
 
 @Service
 public class LenderServiceImpl implements LenderService{
@@ -23,8 +25,13 @@ public class LenderServiceImpl implements LenderService{
        Optional<Lender> existing = repo.findByName("John");
        if(existing.isPresent())
            throw new LenderExistsException("Matching record found. Cannot create new lender. Lender with name exists!");
-      repo.save(lender);
-       return lender.getId();
+       lender.setStatus(LenderStatus.ACTIVE);
+       lender.setCreatedBy("Hrishi G");
+       lender.setCreatedDate(Calendar.getInstance().getTime());
+       lender.setUpdatedBy("Hrishi G");
+       lender.setUpdatedDate(Calendar.getInstance().getTime());
+       repo.save(lender);
+        return lender.getId();
     }
 
     @Override
@@ -47,6 +54,7 @@ public class LenderServiceImpl implements LenderService{
         Optional<Lender> existing = repo.findById(id);
         if(!existing.isPresent())
             throw new LenderNotFoundException("Update failed. No matching identification found for lender!");
+        lender.setUpdatedDate(Calendar.getInstance().getTime());
         repo.save(lender);
     }
 
@@ -58,4 +66,5 @@ public class LenderServiceImpl implements LenderService{
             throw new LenderNotFoundException("No matching identification found for lender!");
         repo.delete(existing.get());
     }
+
 }

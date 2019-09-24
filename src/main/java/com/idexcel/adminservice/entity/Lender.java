@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 
 @Document
-
 public class Lender {
     @Id
     private String id;
@@ -23,9 +22,9 @@ public class Lender {
     private PrimaryContact primaryContact;
 
     private LenderStatus status;
-    private Date createdBy;
+    private String createdBy;
     private Date createdDate;
-    private Date updatedBy;
+    private String updatedBy;
     private Date updatedDate;
 
     public Lender() {
@@ -72,11 +71,11 @@ public class Lender {
         this.status = status;
     }
 
-    public Date getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(Date createdBy) {
+    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -88,11 +87,11 @@ public class Lender {
         this.createdDate = createdDate;
     }
 
-    public Date getUpdatedBy() {
+    public String getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(Date updatedBy) {
+    public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
     }
 
