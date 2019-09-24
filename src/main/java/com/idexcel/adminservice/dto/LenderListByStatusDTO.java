@@ -1,7 +1,5 @@
 package com.idexcel.adminservice.dto;
 
-import com.idexcel.adminservice.entity.Address;
-import com.idexcel.adminservice.entity.PrimaryContact;
 import com.idexcel.adminservice.enums.LenderStatus;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,8 +12,8 @@ public class LenderListByStatusDTO {
 
     private String id;
     private String name;
-    private Address address;
-    private PrimaryContact primaryContact;
+    private AddressDTO address;
+    private PrimaryContactDTO primaryContact;
     private LenderStatus status;
     private Date createdBy;
     private Date createdDate;
