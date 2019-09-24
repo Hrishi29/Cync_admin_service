@@ -15,7 +15,7 @@ import java.util.UUID;
 public class Lender {
     @Id
     private String id;
-   // @Column(unique = true)
+    //@Indexed(unique = true)
     private String name;
 
   //  @OneToOne(mappedBy = "lender", cascade = CascadeType.ALL)

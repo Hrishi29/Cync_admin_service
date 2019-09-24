@@ -15,6 +15,7 @@ public class LenderServiceImpl implements LenderService{
 
     @Override
     public String create(Lender lender) {
+       // Optional<Lender> existing = repo.findByName();
         return null;
     }
 
