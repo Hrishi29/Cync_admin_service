@@ -3,13 +3,10 @@ package com.idexcel.adminservice.entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
-
-@Entity
+@Document
 @Getter @Setter @ToString
 public class Address {
 
@@ -21,8 +18,8 @@ public class Address {
     private String country;
     private int zipcode;
 
-    @OneToOne
-    @MapsId
+   // @OneToOne
+   // @MapsId
     private Lender lender;
 
     public Address(){}

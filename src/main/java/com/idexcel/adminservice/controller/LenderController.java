@@ -2,6 +2,7 @@ package com.idexcel.adminservice.controller;
 
 import com.idexcel.adminservice.dto.LenderCreateDTO;
 import com.idexcel.adminservice.entity.Lender;
+import com.idexcel.adminservice.service.LenderService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,9 @@ public class LenderController {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    private LenderService service;
 
     @GetMapping
     public List<Lender> findAll(){

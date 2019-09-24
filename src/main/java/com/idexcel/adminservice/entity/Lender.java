@@ -4,24 +4,24 @@ import com.idexcel.adminservice.enums.LenderStatus;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
-@Entity
+@Document
 @Getter @Setter @ToString
 public class Lender {
     @Id
     private String id;
-
-    @Column(unique = true)
+   // @Column(unique = true)
     private String name;
 
-    @OneToOne(mappedBy = "lender", cascade = CascadeType.ALL)
+  //  @OneToOne(mappedBy = "lender", cascade = CascadeType.ALL)
     private Address address;
 
-    @OneToOne
+ //   @OneToOne
     private PrimaryContact primaryContact;
 
     private LenderStatus status;
