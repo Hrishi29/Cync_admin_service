@@ -51,11 +51,17 @@ public class LenderServiceImpl implements LenderService{
     @Override
     @Transactional
     public void update(String id, Lender lender) {
+        lender.setUpdatedDate(Calendar.getInstance().getTime());
+        lender.setId(id);
+        repo.save(lender);
+    }
+
+    @Override
+    public Lender updateById(String id) {
         Optional<Lender> existing = repo.findById(id);
         if(!existing.isPresent())
-            throw new LenderNotFoundException("Update failed. No matching identification found for lender!");
-        lender.setUpdatedDate(Calendar.getInstance().getTime());
-        repo.save(lender);
+            throw new LenderNotFoundException("Update failed. Lender not found!");
+        return existing.get();
     }
 
     @Override

@@ -16,6 +16,12 @@ public class PrimaryContact {
     public PrimaryContact() {
     }
 
+    public PrimaryContact(String email, String name, String phone) {
+        this.email = email;
+        this.name = name;
+        this.phone = phone;
+    }
+
     public String getEmail() {
         return email;
     }

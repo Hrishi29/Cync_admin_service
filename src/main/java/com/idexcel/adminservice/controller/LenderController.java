@@ -5,6 +5,7 @@ import com.idexcel.adminservice.entity.Lender;
 import com.idexcel.adminservice.service.LenderService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,8 @@ public class LenderController {
     @Autowired
     private ModelMapper modelMapper;
 
+
+    @Qualifier("lenderServiceImpl")
     @Autowired
     private LenderService service;
 
@@ -56,7 +59,7 @@ public class LenderController {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @PutMapping(value="{lenderId}")
     public void updateLender(@PathVariable("lenderId") String lenderId, @Valid @RequestBody LenderUpdateDTO lenderUpdateDTO){
-        Lender lender = service.findById(lenderId);
+        Lender lender = service.updateById(lenderId);
         modelMapper.map(lenderUpdateDTO, lender);
         service.update(lenderId, lender);
 

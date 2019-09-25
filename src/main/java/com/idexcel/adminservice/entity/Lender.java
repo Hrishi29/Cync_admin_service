@@ -32,6 +32,18 @@ public class Lender {
        // this.id = UUID.randomUUID().toString();
     }
 
+    public Lender(String id, String name, Address address, PrimaryContact primaryContact, LenderStatus status, String createdBy, Date createdDate, String updatedBy, Date updatedDate) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.primaryContact = primaryContact;
+        this.status = status;
+        this.createdBy = createdBy;
+        this.createdDate = createdDate;
+        this.updatedBy = updatedBy;
+        this.updatedDate = updatedDate;
+    }
+
     public String getId() {
         return id;
     }
