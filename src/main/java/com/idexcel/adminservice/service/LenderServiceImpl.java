@@ -60,17 +60,15 @@ public class LenderServiceImpl implements LenderService{
     public Lender updateById(String id) {
         Optional<Lender> existing = repo.findById(id);
         if(!existing.isPresent())
-            throw new LenderNotFoundException("Update failed. Lender not found!");
+            throw new LenderNotFoundException("Lender not found!");
         return existing.get();
     }
 
     @Override
     @Transactional
     public void delete(String id) {
-        Optional<Lender> existing = repo.findById(id);
-        if(!existing.isPresent())
-            throw new LenderNotFoundException("No matching identification found for lender!");
-        repo.delete(existing.get());
+        Lender lender = updateById(id);
+        repo.delete(lender);
     }
 
 }
