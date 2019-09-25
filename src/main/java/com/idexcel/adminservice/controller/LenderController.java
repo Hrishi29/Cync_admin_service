@@ -49,7 +49,6 @@ public class LenderController {
     public ResponseEntity<Object> createLender(@Valid @RequestBody LenderCreateDTO lenderCreateDTO, HttpServletRequest request) {
         Lender lender = modelMapper.map(lenderCreateDTO, Lender.class);
         String id = service.create(lender);
-         String location = "http://localhost:8080/adminservice/api/lenders/" + id;
 
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.add("Location", request.getRequestURL().toString() + "/" + id);

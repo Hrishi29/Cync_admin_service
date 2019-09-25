@@ -22,7 +22,13 @@ public class AddressDTO {
     public AddressDTO() {
     }
 
-
+    public AddressDTO(@NotNull String street, @NotNull String city, @NotNull String state, @NotNull String country, @NotNull int zipCode) {
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.zipCode = zipCode;
+    }
 
     public String getStreet() {
         return street;

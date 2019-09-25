@@ -18,6 +18,12 @@ public class PrimaryContactDTO {
     public PrimaryContactDTO() {
     }
 
+    public PrimaryContactDTO(@NotNull String email, @NotNull String name, @NotNull String phone) {
+        this.email = email;
+        this.name = name;
+        this.phone = phone;
+    }
+
     public String getEmail() {
         return email;
     }
