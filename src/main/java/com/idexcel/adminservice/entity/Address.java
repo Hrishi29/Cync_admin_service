@@ -3,34 +3,23 @@ package com.idexcel.adminservice.entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+
 @Getter @Setter @ToString
 public class Address {
 
-    @Id
-    private String id;
     private String street;
     private String city;
     private String state;
     private String country;
-    private int zipcode;
+    private int zipCode;
 
    // @OneToOne
    // @MapsId
-    private Lender lender;
+
 
     public Address(){}
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getStreet() {
         return street;
@@ -64,19 +53,12 @@ public class Address {
         this.country = country;
     }
 
-    public int getZipcode() {
-        return zipcode;
+    public int getZipCode() {
+        return zipCode;
     }
 
-    public void setZipcode(int zipcode) {
-        this.zipcode = zipcode;
+    public void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
     }
 
-    public Lender getLender() {
-        return lender;
-    }
-
-    public void setLender(Lender lender) {
-        this.lender = lender;
-    }
 }

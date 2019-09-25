@@ -22,7 +22,7 @@ public class LenderServiceImpl implements LenderService{
     @Override
     @Transactional
     public String create(Lender lender) {
-       Optional<Lender> existing = repo.findByName("John");
+       Optional<Lender> existing = repo.findByName(lender.getName());
        if(existing.isPresent())
            throw new LenderExistsException("Matching record found. Cannot create new lender. Lender with name exists!");
        lender.setStatus(LenderStatus.ACTIVE);
@@ -30,8 +30,8 @@ public class LenderServiceImpl implements LenderService{
        lender.setCreatedDate(Calendar.getInstance().getTime());
        lender.setUpdatedBy("Hrishi G");
        lender.setUpdatedDate(Calendar.getInstance().getTime());
-       repo.save(lender);
-        return lender.getId();
+       Lender newLender = repo.save(lender);
+        return newLender.getId();
     }
 
     @Override
@@ -43,8 +43,8 @@ public class LenderServiceImpl implements LenderService{
     @Override
     public Lender findById(String id) {
         Optional<Lender> existing = repo.findById(id);
-        if(!existing.isPresent())
-            throw new LenderNotFoundException("No matching identification found for lender!");
+        if(!existing.isPresent() || existing.get().getStatus() == LenderStatus.SUSPENDED )
+            throw new LenderNotFoundException("Lender does not exist or status is suspended!");
         return existing.get();
     }
 

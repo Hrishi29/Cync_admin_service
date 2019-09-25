@@ -2,6 +2,7 @@ package com.idexcel.adminservice.entity;
 
 import com.idexcel.adminservice.enums.LenderStatus;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,7 +13,7 @@ public class Lender {
     @Id
     private String id;
 
-    @Indexed(unique = true)
+    @Indexed(unique = true, direction = IndexDirection.ASCENDING)
     private String name;
 
   //  @OneToOne(mappedBy = "lender", cascade = CascadeType.ALL)

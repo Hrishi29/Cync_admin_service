@@ -4,11 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.constraints.NotNull;
+
 @Getter @Setter @ToString
 public class PrimaryContactDTO {
-
+    @NotNull
     private String email;
+    @NotNull
     private String name;
+    @NotNull
     private String phone;
 
     public PrimaryContactDTO() {

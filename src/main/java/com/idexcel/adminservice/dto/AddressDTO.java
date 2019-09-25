@@ -4,26 +4,25 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.constraints.NotNull;
+
 @Getter @Setter @ToString
 public class AddressDTO {
-
-    private String id;
+    @NotNull
     private String street;
+    @NotNull
     private String city;
+    @NotNull
     private String state;
+    @NotNull
     private String country;
-    private int zipcode;
+    @NotNull
+    private int zipCode;
 
     public AddressDTO() {
     }
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getStreet() {
         return street;
@@ -57,11 +56,11 @@ public class AddressDTO {
         this.country = country;
     }
 
-    public int getZipcode() {
-        return zipcode;
+    public int getZipCode() {
+        return zipCode;
     }
 
-    public void setZipcode(int zipcode) {
-        this.zipcode = zipcode;
+    public void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
     }
 }

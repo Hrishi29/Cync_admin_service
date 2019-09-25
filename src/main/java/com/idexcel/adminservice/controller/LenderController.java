@@ -5,11 +5,13 @@ import com.idexcel.adminservice.entity.Lender;
 import com.idexcel.adminservice.service.LenderService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,18 +43,21 @@ public class LenderController {
 
 
     @PostMapping
-    public ResponseEntity.BodyBuilder createLender(@RequestBody LenderCreateDTO lenderCreateDTO) {
+    public ResponseEntity<Object> createLender(@Valid @RequestBody LenderCreateDTO lenderCreateDTO, HttpServletRequest request) {
         Lender lender = modelMapper.map(lenderCreateDTO, Lender.class);
         String id = service.create(lender);
-         String location = "http://localhost:8080/lenderd/" + id;
+         String location = "http://localhost:8080/adminservice/api/lenders/" + id;
 
-        return  ResponseEntity.created(URI.create(location));
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.add("Location", request.getRequestURL().toString() + "/" + id);
+        return new ResponseEntity<>("Id: " + id, responseHeaders, HttpStatus.CREATED);
     }
 
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @PutMapping(value="{lenderId}")
-    public void updateLender(@PathVariable("lenderId") String lenderId, @RequestBody LenderUpdateDTO lenderUpdateDTO){
-        Lender lender = modelMapper.map(lenderUpdateDTO, Lender.class);
+    public void updateLender(@PathVariable("lenderId") String lenderId, @Valid @RequestBody LenderUpdateDTO lenderUpdateDTO){
+        Lender lender = service.findById(lenderId);
+        modelMapper.map(lenderUpdateDTO, lender);
         service.update(lenderId, lender);
 
     }
@@ -65,8 +70,10 @@ public class LenderController {
 
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @PatchMapping(value="{lenderId}")
-    public void patchLender(@PathVariable("lenderId") String lenderId, @RequestBody LenderPatchDTO lenderPatchDTO){
-        Lender lender = modelMapper.map(lenderPatchDTO, Lender.class);
+    public void patchLender(@PathVariable("lenderId") String lenderId, @Valid @RequestBody LenderPatchDTO lenderPatchDTO){
+
+        Lender lender = service.findById(lenderId);
+        modelMapper.map(lenderPatchDTO, lender);
         service.update(lenderId, lender);
     }
 

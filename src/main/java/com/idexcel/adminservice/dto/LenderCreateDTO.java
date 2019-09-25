@@ -4,10 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.constraints.NotNull;
+
 @Getter @Setter @ToString
 public class LenderCreateDTO {
+    @NotNull
     private String name;
+    @NotNull
     private AddressDTO address;
+    @NotNull
     private PrimaryContactDTO primaryContact;
 
     public LenderCreateDTO() {
