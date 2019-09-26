@@ -1,13 +1,10 @@
 package com.idexcel.adminservice.dto;
 
 import com.idexcel.adminservice.enums.LenderStatus;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.util.Date;
 
-@Getter @Setter @ToString
+
 public class LenderListByStatusDTO {
 
     private String id;

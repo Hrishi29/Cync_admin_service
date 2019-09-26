@@ -12,10 +12,13 @@
   <name>hrishi-admin-service</name>
   <url>http://www.example.com</url>
 
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+      <sonar.host.url>http://sonar.idexceldemo.com:9000</sonar.host.url>
+      <sonar.projectKey>hrishi-admin-service</sonar.projectKey>
   </properties>
 
   <dependencies>
@@ -30,11 +33,6 @@
       <version>2.1.8.RELEASE</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-      <version>2.1.8.RELEASE</version>
-    </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok-maven-plugin</artifactId>
@@ -58,6 +56,11 @@
       <version>2.2.0</version>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-devtools</artifactId>
+          <version>2.1.8.RELEASE</version>
+      </dependency>
 
   </dependencies>
 
@@ -65,25 +68,32 @@
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
-          <groupId>org.projectlombok</groupId>
-          <artifactId>lombok-maven-plugin</artifactId>
-          <version>1.18.10.0</version>
-          <executions>
-            <execution>
-              <phase>generate-sources</phase>
-              <goals>
-                <goal>delombok</goal>
-              </goals>
-            </execution>
-          </executions>
+          <groupId>org.sonarsource.scanner.maven</groupId>
+          <artifactId>sonar-maven-plugin</artifactId>
+          <version>3.5.0.1254</version>
         </plugin>
-        <plugin>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-maven-plugin</artifactId>
-          <configuration>
-            <excludeDevtools>false</excludeDevtools>
-          </configuration>
-        </plugin>
+          <plugin>
+              <groupId>org.jacoco</groupId>
+              <artifactId>jacoco-maven-plugin</artifactId>
+              <version>0.8.4</version>
+          </plugin>
+          <plugin>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-maven-plugin</artifactId>
+              <version>2.1.7.RELEASE</version>
+              <configuration>
+                <mainClass>com.idexcel.adminservice.Application</mainClass>
+              </configuration>
+              <executions>
+                  <execution>
+                      <goals>
+                          <goal>repackage</goal>
+                      </goals>
+                  </execution>
+              </executions>
+          </plugin>
+
+
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
