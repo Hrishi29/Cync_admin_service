@@ -6,6 +6,6 @@ EXPOSE 8080
 
 WORKDIR /usr/local/bin/
 
-COPY ./target/hrishi-admin-service-1.0.0.jar service.jar
+COPY ./target/hrishi-admin-service-0.0.1.jar hrishiservice.jar
 
-CMD ["java", "-jar", "service.jar"]
+CMD ["java", "-jar", "-Dspring.profiles.active=prod", "hrishiservice.jar"]
