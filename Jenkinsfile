@@ -23,7 +23,7 @@ node {
 		}
 	    
 	    stage('Build Docker Image') {
-	    		sh 'docker build -t Hrishi29/Sync_admin_service:${BUILD_NUMBER} -t Hrishi29/Sync_admin_service:latest -f Dockerfile .'
+	    		sh 'docker build -t hrishigadkari94/sync-admin-service:${BUILD_NUMBER} -t hrishigadkari94/sync-admin-service:latest -f Dockerfile .'
 	    }
 	        
 	    stage('Push Docker Image to Docker Hub') { 
