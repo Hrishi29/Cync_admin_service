@@ -23,13 +23,13 @@ node {
 		}
 	    
 	    stage('Build Docker Image') {
-	    		sh 'docker build -t hrishigadkari94/sync-admin-service:${BUILD_NUMBER} -t hrishigadkari94/sync-admin-service:latest -f Dockerfile .'
+	    		sh 'docker build -t hrishigadkari94/Cync-admin-service:${BUILD_NUMBER} -t hrishigadkari94/Cync-admin-service:latest -f Dockerfile .'
 	    }
 	        
 	    stage('Push Docker Image to Docker Hub') { 
 	    		withCredentials([usernamePassword(credentialsId: 'hrishiSync', passwordVariable: 'pass', usernameVariable: 'user')]) {
 	    			sh 'docker login -u $user -p $pass' 
-	        		sh 'docker push hrishigadkari94/sync-admin-service'
+	        		sh 'docker push hrishigadkari94/Cync-admin-service'
 			}	 
 	    }
 	    
